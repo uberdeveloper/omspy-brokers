@@ -1,6 +1,7 @@
 from pya3 import Aliceblue
 from omspy.base import Broker, pre, post
 from typing import Optional, List, Dict
+from omspy.brokers.zerodha import Zerodha
 
 
 class AliceBlue(Broker):
@@ -12,6 +13,7 @@ class AliceBlue(Broker):
         self._user_id = user_id
         self._api_key = api_key
         self.alice = Aliceblue(user_id=user_id, api_key=api_key)
+        super(AliceBlue, self).__init__()
 
     def authenticate(self) -> str:
         """
@@ -31,8 +33,8 @@ class AliceBlue(Broker):
 
     @property
     @post
-    def orders(self):
-        pass
+    def orders(self) -> List[Dict]:
+        return self.alice.get_order_history("")
 
     @property
     @post

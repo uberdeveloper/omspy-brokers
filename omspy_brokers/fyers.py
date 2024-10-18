@@ -50,7 +50,6 @@ class Fyers(Broker):
         super(Fyers, self).__init__()
 
     def authenticate(self) -> None:
-
         """
         Authenticates a fyers session if access token is already available
         Looks up token in fyers_token.tok file
